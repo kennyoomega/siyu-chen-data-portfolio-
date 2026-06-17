@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Siyu Chen — Data Engineer</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Merriweather:wght@400;700&display=swap');
+
+  :root {
+    --bg: #fafaf8;
+    --white: #ffffff;
+    --border: #e8e4df;
+    --text: #2c2c2c;
+    --muted: #888;
+    --accent: #1a6b4a;
+    --accent-light: #f0f7f4;
+    --accent2: #1a4a6b;
+    --accent2-light: #f0f4f7;
+    --amber: #7a4f00;
+    --amber-light: #fef8ef;
+    --sans: 'Lato', sans-serif;
+    --serif: 'Merriweather', serif;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--sans);
+    font-size: 13.5px;
+    line-height: 1.7;
+  }
+
+  .page {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 52px 48px;
+    background: var(--white);
+    min-height: 100vh;
+  }
+
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 40px;
+    padding-bottom: 28px;
+    border-bottom: 2px solid var(--text);
+  }
+
+  .name {
+    font-family: var(--serif);
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--text);
+    letter-spacing: -0.5px;
+    margin-bottom: 4px;
+  }
+
+  .subtitle {
+    font-size: 13px;
+    color: var(--muted);
+    margin-bottom: 12px;
+  }
+
+  .role-pills { display: flex; gap: 6px; flex-wrap: wrap; }
+
+  .pill {
+    font-size: 11px;
+    font-weight: 700;
+    padding: 3px 10px;
+    border-radius: 20px;
+    letter-spacing: 0.3px;
+  }
+
+  .pill-green { background: var(--accent-light); color: var(--accent); }
+  .pill-blue  { background: var(--accent2-light); color: var(--accent2); }
+  .pill-amber { background: var(--amber-light); color: var(--amber); }
+
+  .contact {
+    text-align: right;
+    font-size: 12px;
+    color: var(--muted);
+    line-height: 2;
+  }
+
+  .contact a { color: var(--accent2); text-decoration: none; }
+
+  .section { margin-bottom: 36px; }
+
+  .section-title {
+    font-family: var(--serif);
+    font-size: 13px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: var(--muted);
+    margin-bottom: 16px;
+    padding-bottom: 6px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .project {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-left: 4px solid var(--accent);
+    padding: 22px 24px;
+    margin-bottom: 16px;
+  }
+
+  .project-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 10px;
+  }
+
+  .project-name {
+    font-family: var(--serif);
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--text);
+  }
+
+  .status {
+    font-size: 10.5px;
+    font-weight: 700;
+    padding: 3px 10px;
+    border-radius: 3px;
+    white-space: nowrap;
+  }
+
+  .status-live { background: var(--accent-light); color: var(--accent); }
+  .status-wip  { background: var(--amber-light); color: var(--amber); }
+
+  .project-desc {
+    font-size: 13px;
+    color: #444;
+    line-height: 1.75;
+    margin-bottom: 18px;
+  }
+
+  .what-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    margin-bottom: 18px;
+  }
+
+  .what-item {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    padding: 12px 14px;
+  }
+
+  .what-icon { font-size: 18px; margin-bottom: 5px; display: block; }
+
+  .what-title {
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 3px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .what-desc { font-size: 11.5px; color: var(--muted); line-height: 1.5; }
+
+  .flow-label {
+    font-size: 12px;
+    color: var(--muted);
+    margin-bottom: 6px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .flow {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    flex-wrap: wrap;
+    margin-bottom: 8px;
+    padding: 10px 14px;
+    background: var(--bg);
+    border: 1px solid var(--border);
+  }
+
+  .flow-step { font-size: 11px; color: var(--text); font-weight: 700; }
+  .flow-step.hl { color: var(--accent); }
+  .flow-arrow { color: var(--muted); font-size: 12px; }
+
+  .flow-note {
+    font-size: 11px;
+    color: var(--accent);
+    padding: 6px 14px;
+    background: var(--accent-light);
+    border: 1px solid rgba(26,107,74,0.15);
+    margin-bottom: 14px;
+  }
+
+  .marts-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 6px;
+    margin-bottom: 14px;
+  }
+
+  .mart-item {
+    background: var(--accent2-light);
+    border: 1px solid rgba(26,74,107,0.15);
+    padding: 8px 10px;
+    text-align: center;
+  }
+
+  .mart-name {
+    font-size: 10px;
+    font-weight: 700;
+    color: var(--accent2);
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+    margin-bottom: 3px;
+  }
+
+  .mart-desc { font-size: 10px; color: var(--muted); line-height: 1.4; }
+
+  .result-bar {
+    display: flex;
+    gap: 10px;
+    align-items: stretch;
+  }
+
+  .result-item {
+    flex: 1;
+    background: var(--accent-light);
+    border: 1px solid rgba(26,107,74,0.15);
+    padding: 12px 14px;
+    text-align: center;
+  }
+
+  .result-num {
+    font-family: var(--serif);
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--accent);
+    display: block;
+    line-height: 1.1;
+  }
+
+  .result-text {
+    font-size: 11px;
+    color: var(--accent);
+    margin-top: 3px;
+    display: block;
+    opacity: 0.8;
+  }
+
+  .framework {
+    border: 1px solid var(--border);
+    border-left: 4px solid var(--amber);
+    padding: 22px 24px;
+  }
+
+  .fw-desc {
+    font-size: 13px;
+    color: #444;
+    margin-bottom: 16px;
+    line-height: 1.75;
+  }
+
+  .fw-progress { margin-bottom: 14px; }
+
+  .fw-progress-label {
+    font-size: 11px;
+    color: var(--muted);
+    margin-bottom: 8px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .progress-row {
+    display: flex;
+    gap: 4px;
+    margin-bottom: 6px;
+  }
+
+  .prog-step {
+    flex: 1;
+    height: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 9.5px;
+    font-weight: 700;
+    text-align: center;
+    line-height: 1.2;
+  }
+
+  .prog-done  { background: var(--accent-light); color: var(--accent); }
+  .prog-wip   { background: var(--amber-light); color: var(--amber); }
+  .prog-todo  { background: var(--bg); color: #ccc; border: 1px solid var(--border); }
+  .prog-spec  { background: #f5f0ff; color: #6b3fa0; }
+
+  .fw-legend {
+    display: flex;
+    gap: 14px;
+    font-size: 11px;
+    color: var(--muted);
+  }
+
+  .fw-legend span { display: flex; align-items: center; gap: 5px; }
+
+  .ldot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    display: inline-block;
+    flex-shrink: 0;
+  }
+
+  .why-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+  }
+
+  .why-item {
+    padding: 14px 16px;
+    border: 1px solid var(--border);
+    background: var(--bg);
+  }
+
+  .why-q {
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 5px;
+  }
+
+  .why-a { font-size: 12.5px; color: var(--text); line-height: 1.6; }
+
+  .footer {
+    margin-top: 36px;
+    padding-top: 20px;
+    border-top: 1px solid var(--border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .footer-note { font-size: 11.5px; color: var(--muted); line-height: 1.8; }
+
+  .cta {
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--white);
+    background: var(--accent);
+    padding: 9px 20px;
+    border-radius: 3px;
+    text-decoration: none;
+    white-space: nowrap;
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- Header -->
+  <div class="header">
+    <div>
+      <div class="name">Siyu Chen</div>
+      <div class="subtitle">MSc Computer Science & Engineering · Technical University of Denmark</div>
+      <div class="role-pills">
+        <span class="pill pill-green">Data Engineer</span>
+        <span class="pill pill-blue">Analytics Engineer</span>
+        <span class="pill pill-amber">ML Engineer</span>
+      </div>
+    </div>
+    <div class="contact">
+      <div>Copenhagen, Denmark</div>
+      <div><a href="https://github.com/kennyoomega">github.com/kennyoomega</a></div>
+      <div><a href="https://www.linkedin.com/in/siyu-chen-861750318">linkedin.com/in/siyu-chen-861750318</a></div>
+    </div>
+  </div>
+
+  <!-- Project -->
+  <div class="section">
+    <div class="section-title">What I built</div>
+
+    <div class="project">
+      <div class="project-top">
+        <div class="project-name">Retail Sales Forecasting & Analytics Platform</div>
+        <span class="status status-live">✓ Live & Deployed</span>
+      </div>
+
+      <div class="project-desc">
+        An end-to-end data product with two sides: a <strong>data engineering layer</strong> that turns raw retail data into clean, tested, queryable analytics marts via dbt and BigQuery — and a <strong>delivery layer</strong> that serves forecasts through a live API, logs every prediction to a database, and surfaces insights in a dashboard. No manual steps from raw data to business insight.
+      </div>
+
+      <div class="what-grid">
+        <div class="what-item">
+          <span class="what-icon">🏗️</span>
+          <div class="what-title">Transforms</div>
+          <div class="what-desc">Raw data → dbt staging + 5 mart models in BigQuery, with 19 automated tests and full lineage</div>
+        </div>
+        <div class="what-item">
+          <span class="what-icon">🔮</span>
+          <div class="what-title">Predicts</div>
+          <div class="what-desc">Next month's sales — 52% more accurate than a seasonal baseline, served via live API</div>
+        </div>
+        <div class="what-item">
+          <span class="what-icon">📋</span>
+          <div class="what-title">Reports</div>
+          <div class="what-desc">Every prediction logged to PostgreSQL and visible in a dashboard for business teams</div>
+        </div>
+      </div>
+
+      <div class="flow-label">How data flows through the system</div>
+      <div class="flow">
+        <span class="flow-step">Raw CSV</span>
+        <span class="flow-arrow">→</span>
+        <span class="flow-step hl">BigQuery</span>
+        <span class="flow-arrow">→</span>
+        <span class="flow-step hl">dbt Staging</span>
+        <span class="flow-arrow">→</span>
+        <span class="flow-step hl">dbt Marts</span>
+        <span class="flow-arrow">→</span>
+        <span class="flow-step">ML Model</span>
+        <span class="flow-arrow">→</span>
+        <span class="flow-step">FastAPI</span>
+        <span class="flow-arrow">→</span>
+        <span class="flow-step">PostgreSQL</span>
+        <span class="flow-arrow">→</span>
+        <span class="flow-step">Dashboard</span>
+        <span class="flow-arrow">→</span>
+        <span class="flow-step">Cloud</span>
+      </div>
+
+      <div class="flow-note">dbt layer: staging cleans and renames raw data · 5 mart models answer specific business questions · 19 tests guard data quality · lineage graph shows full data origin</div>
+
+      <div style="font-size:11px; color:var(--muted); margin-bottom:6px; font-weight:700; text-transform:uppercase; letter-spacing:0.5px;">The 5 mart models (each answers a specific business question)</div>
+      <div class="marts-grid">
+        <div class="mart-item">
+          <div class="mart-name">Monthly Sales</div>
+          <div class="mart-desc">Lag features + rolling means for forecasting</div>
+        </div>
+        <div class="mart-item">
+          <div class="mart-name">By Category</div>
+          <div class="mart-desc">Revenue & profit margin by product line</div>
+        </div>
+        <div class="mart-item">
+          <div class="mart-name">By Segment</div>
+          <div class="mart-desc">Consumer / Corporate / Home Office trends</div>
+        </div>
+        <div class="mart-item">
+          <div class="mart-name">By Region</div>
+          <div class="mart-desc">Geographic breakdown with avg order value</div>
+        </div>
+        <div class="mart-item">
+          <div class="mart-name">Product Rank</div>
+          <div class="mart-desc">RANK() within sub-category by revenue</div>
+        </div>
+      </div>
+
+      <div class="result-bar">
+        <div class="result-item">
+          <span class="result-num">−52%</span>
+          <span class="result-text">forecast error reduced</span>
+        </div>
+        <div class="result-item">
+          <span class="result-num">24%→11.5%</span>
+          <span class="result-text">MAPE before vs after</span>
+        </div>
+        <div class="result-item">
+          <span class="result-num">19</span>
+          <span class="result-text">automated dbt tests</span>
+        </div>
+        <div class="result-item">
+          <span class="result-num">5 layers</span>
+          <span class="result-text">data → marts → model → API → dashboard</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Framework -->
+  <div class="section">
+    <div class="section-title">What I'm building now</div>
+
+    <div class="framework">
+      <div class="project-top">
+        <div class="project-name">ML Data Quality & Governance Framework</div>
+        <span class="status status-wip">In Development</span>
+      </div>
+
+      <div class="fw-desc">
+        A YAML-driven framework that sits before any model training and acts as a quality gate. Every run is automatic, auditable, and produces a structured JSON artifact — so there's always a clear record of what data was used, what checks passed or failed, and whether the pipeline is safe to continue. Hard gates block the pipeline on critical failures; soft gates warn without stopping.
+      </div>
+
+      <div class="fw-progress">
+        <div class="fw-progress-label">Progress — DE foundation complete, ML layer in progress</div>
+        <div class="progress-row">
+          <div class="prog-step prog-done">Setup</div>
+          <div class="prog-step prog-done">Data Quality</div>
+          <div class="prog-step prog-done">Data Integrity</div>
+          <div class="prog-step prog-done">Split Logic</div>
+          <div class="prog-step prog-wip">Features</div>
+          <div class="prog-step prog-wip">Modeling</div>
+          <div class="prog-step prog-todo">Evaluation</div>
+          <div class="prog-step prog-todo">Error Analysis</div>
+          <div class="prog-step prog-todo">Explainability</div>
+          <div class="prog-step prog-todo">Business</div>
+          <div class="prog-step prog-spec">Governance</div>
+        </div>
+        <div class="fw-legend">
+          <span><span class="ldot" style="background:var(--accent)"></span> Complete</span>
+          <span><span class="ldot" style="background:var(--amber)"></span> In progress</span>
+          <span><span class="ldot" style="background:#6b3fa0"></span> Built ahead (governance)</span>
+          <span><span class="ldot" style="background:#ddd"></span> Planned</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Why me -->
+  <div class="section">
+    <div class="section-title">What makes me different</div>
+    <div class="why-grid">
+      <div class="why-item">
+        <div class="why-q">Production-grade stack</div>
+        <div class="why-a">dbt + BigQuery for analytics, FastAPI for serving, Docker for deployment, PostgreSQL for logging. Every layer is real and running.</div>
+      </div>
+      <div class="why-item">
+        <div class="why-q">Data quality by default</div>
+        <div class="why-a">19 dbt tests on every model run. A separate framework that gates data before training. I treat data quality as engineering, not afterthought.</div>
+      </div>
+      <div class="why-item">
+        <div class="why-q">End-to-end thinking</div>
+        <div class="why-a">I designed every layer myself — raw data to marts to API to dashboard. I understand how it connects and why each decision was made.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <div class="footer">
+    <div class="footer-note">
+      Open to Data Engineer · Analytics Engineer · ML Engineer roles<br>
+      Full code on GitHub · Available immediately · Based in Copenhagen
+    </div>
+    <a class="cta" href="https://github.com/kennyoomega">View GitHub →</a>
+  </div>
+
+</div>
+</body>
+</html>
